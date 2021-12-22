@@ -27,6 +27,7 @@ export default function FavouriteCharacters() {
       <FlatList
         data={state.favouritesCharacters}
         renderItem={renderFavouriteCharacters}
+        horizontal={true}
       />
     </View>
   );

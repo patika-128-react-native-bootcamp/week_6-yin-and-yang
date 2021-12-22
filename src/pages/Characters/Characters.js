@@ -46,7 +46,7 @@ export default function Characters({navigation}) {
   const renderCharacters = ({item}) => (
     <CharacterCard character={item} onClick={() => navigateToDetail(item)} onButtonClick={() => handleAddFavourites(item)}/>
   );
-console.log(characterList)
+
   return (
     <View>
       <SearchBar onSearch={handleSearch}></SearchBar>
