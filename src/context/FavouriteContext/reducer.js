@@ -3,7 +3,7 @@ export default (state, action) => {
     case 'ADD_TO_FAVOURITE_CHARACTERS': {
       const selectedCharacter = action.payload.character;
 
-      const characterFavouriteIndex = state.favouritesCharacters.findIndex(
+      const characterFavouriteIndex = state.favouriteCharacters.findIndex(
         f => f.id === selectedCharacter.id,
       );
       const isInFavourites = characterFavouriteIndex !== -1;
@@ -13,25 +13,25 @@ export default (state, action) => {
       }
 
       const updatedFavourites = [
-        ...state.favouritesCharacters,
+        ...state.favouriteCharacters,
         selectedCharacter,
       ];
 
-      return {...state, favouritesCharacters: updatedFavourites};
+      return {...state, favouriteCharacters: updatedFavourites};
     }
 
     case 'REMOVE_FROM_FAVOURITE_CHARACTERS': {
-        console.log(state.favouritesCharacters)
+
       const selectedCharacter = action.payload.character;
 
-      const characterFavouriteIndex = state.favouritesCharacters.findIndex(
+      const characterFavouriteIndex = state.favouriteCharacters.findIndex(
         f => f.id === selectedCharacter.id,
       );
 
-      const updatedFavouritesList = [...state.favouritesCharacters];
+      const updatedFavouritesList = [...state.favouriteCharacters];
       updatedFavouritesList.splice(characterFavouriteIndex, 1);
 
-      return {...state, favouritesCharacters: updatedFavouritesList};
+      return {...state, favouriteCharacters: updatedFavouritesList};
     }
 
     default:

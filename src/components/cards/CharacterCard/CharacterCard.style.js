@@ -10,15 +10,13 @@ export default StyleSheet.create({
     padding: spacing.large,
     alignItems: 'center',
     backgroundColor: 'rgba(200, 22, 22, 0.7)',
-    borderRadius: 34,
+    borderRadius: 10,
   },
   image: {
     width: '100%',
-    height: Dimensions.get('window').height / 2.5,
-    resizeMode: 'cover',
-    borderRadius: 24,
-    margin: 0,
+    height: Dimensions.get('window').height / 2.6,
     marginBottom: spacing.normal,
+    alignItems: 'flex-end',
   },
   characterName: {
     fontSize: fontSizes.title,

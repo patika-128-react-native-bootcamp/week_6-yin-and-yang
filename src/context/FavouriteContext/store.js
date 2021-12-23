@@ -1,4 +1,4 @@
 export default {
-    favouritesCharacters: [],
-    favouritesComics: [],
+    favouriteCharacters: [],
+    favouriteComics: [],
   };

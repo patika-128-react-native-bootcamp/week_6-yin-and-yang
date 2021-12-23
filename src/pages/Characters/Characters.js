@@ -34,13 +34,16 @@ export default function Characters({navigation}) {
     setCharacterList(filteredList);
   }
 
+console.log(characterList)
+
   function handleAddFavourites(character) {
     dispatch({
       type: 'ADD_TO_FAVOURITE_CHARACTERS',
       payload: {
         character,
       },
-    });
+    })
+    character.notFavourite = false;
   }
 
   const renderCharacters = ({item}) => (

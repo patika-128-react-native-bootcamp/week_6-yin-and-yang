@@ -8,6 +8,7 @@ export default function FavouriteCharacters() {
 
   function handleRemoveFavourites(character) {
     dispatch({type: 'REMOVE_FROM_FAVOURITE_CHARACTERS', payload: {character}});
+    character.notFavourite = true;
   }
 
   const renderFavouriteCharacters = ({item}) => {
@@ -16,8 +17,8 @@ export default function FavouriteCharacters() {
         <CharacterCard
           character={item}
           onClick={() => navigateToDetail(item)}
+          onButtonClick={handleRemoveFavourites}
         />
-        <Button title="Remove" onPress={() => handleRemoveFavourites(item)}></Button>
       </View>
     );
   };
@@ -25,7 +26,7 @@ export default function FavouriteCharacters() {
   return (
     <View>
       <FlatList
-        data={state.favouritesCharacters}
+        data={state.favouriteCharacters}
         renderItem={renderFavouriteCharacters}
         horizontal={true}
       />
