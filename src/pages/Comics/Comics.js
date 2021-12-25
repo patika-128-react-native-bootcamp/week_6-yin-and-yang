@@ -34,7 +34,7 @@ export default function Comics({navigation}) {
     const renderComics = ({item}) => (
       <ComicsCard comics={item} onClick={() => navigateToDetail(item)} />
     );
-  console.log(comicsList)
+
     return (
       <View>
         <SearchBar onSearch={handleSearch}></SearchBar>

@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export default (state, action) => {
   switch (action.type) {
     case 'ADD_TO_FAVOURITE_CHARACTERS': {
@@ -16,6 +18,12 @@ export default (state, action) => {
         ...state.favouriteCharacters,
         selectedCharacter,
       ];
+
+      AsyncStorage.setItem('@FavouriteCharactersList', JSON.stringify(updatedFavourites))
+
+      console.log(AsyncStorage.getItem('@FavouriteCharactersList').then(FavouriteCharactersList => {
+        JSON.parse(FavouriteCharactersList)
+      }))
 
       return {...state, favouriteCharacters: updatedFavourites};
     }

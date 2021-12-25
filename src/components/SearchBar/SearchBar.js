@@ -7,7 +7,11 @@ export default function SearchBar({onSearch}) {
   return (
     <View style={styles.container}>
       <Icon name="magnify" size={30} />
-      <TextInput placeholder="Search..." onChangeText={onSearch} style={styles.input} />
+      <TextInput
+        placeholder="Search..."
+        onChangeText={onSearch}
+        style={styles.input}
+      />
     </View>
   );
 }

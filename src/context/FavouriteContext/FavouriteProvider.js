@@ -1,7 +1,6 @@
-import React, {createContext, useReducer, useState} from 'react';
+import React, {createContext, useEffect, useReducer, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import reducer from './reducer';
-import store from './store';
 
 export const FavouriteContext = createContext();
 

@@ -1,14 +1,20 @@
 import React, {useContext} from 'react';
-import {View, Text, FlatList, Button} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import CharacterCard from '../../components/cards/CharacterCard';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {FavouriteContext} from '../../context/FavouriteContext/FavouriteProvider';
+import styles from './FavoriteCharacters.style';
 
-export default function FavouriteCharacters() {
+export default function FavouriteCharacters({navigation}) {
   const {state, dispatch} = useContext(FavouriteContext);
 
   function handleRemoveFavourites(character) {
     dispatch({type: 'REMOVE_FROM_FAVOURITE_CHARACTERS', payload: {character}});
     character.notFavourite = true;
+  }
+
+  function navigateToDetail(characterInfo) {
+    navigation.navigate(routes.CHARACTER_DETAIL, {character: characterInfo});
   }
 
   const renderFavouriteCharacters = ({item}) => {
@@ -17,8 +23,13 @@ export default function FavouriteCharacters() {
         <CharacterCard
           character={item}
           onClick={() => navigateToDetail(item)}
-          onButtonClick={handleRemoveFavourites}
         />
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => handleRemoveFavourites(item)}>
+          <Icon name="delete" size={30} color={'red'} />
+          <Text style={styles.buttonText}> Remove From Favourites</Text>
+        </TouchableOpacity>
       </View>
     );
   };

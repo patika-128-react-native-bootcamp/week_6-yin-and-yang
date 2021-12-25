@@ -1,5 +1,6 @@
 import React from 'react';
 import FavouriteProvider from './context/FavouriteContext/FavouriteProvider';
+import ThemeProvider from './context/ThemeContext/ThemeProvider';
 import Navigation from './navigation/navigation';
 
 /**
@@ -23,8 +24,10 @@ import Navigation from './navigation/navigation';
 
 export default function App() {
   return (
-    <FavouriteProvider>
-      <Navigation />
-    </FavouriteProvider>
+    <ThemeProvider>
+      <FavouriteProvider>
+        <Navigation />
+      </FavouriteProvider>
+    </ThemeProvider>
   );
 }

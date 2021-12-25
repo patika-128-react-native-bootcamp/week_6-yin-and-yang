@@ -1,17 +1,29 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Switch,
+  SafeAreaView,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CharacterCard from '../../components/cards/CharacterCard';
 import Loading from '../../components/Loading';
 import SearchBar from '../../components/SearchBar';
-import { FavouriteContext } from '../../context/FavouriteContext/FavouriteProvider';
+import {FavouriteContext} from '../../context/FavouriteContext/FavouriteProvider';
+import {ThemeContext} from '../../context/ThemeContext/ThemeProvider';
 import useCharacters from '../../hooks/useCharacters/useCharacters';
 import routes from '../../navigation/routes';
+import styles from './Characters.style';
 
 export default function Characters({navigation}) {
   const {characterData, characterLoading, characterError} = useCharacters();
   const [characterList, setCharacterList] = useState([]);
 
-  const {dispatch} = useContext(FavouriteContext)
+  const {dispatch} = useContext(FavouriteContext);
+
+  const {themeState, themeDispatch} = useContext(ThemeContext);
 
   useEffect(() => {
     setCharacterList(characterData);
@@ -34,30 +46,49 @@ export default function Characters({navigation}) {
     setCharacterList(filteredList);
   }
 
-console.log(characterList)
-
   function handleAddFavourites(character) {
     dispatch({
       type: 'ADD_TO_FAVOURITE_CHARACTERS',
       payload: {
         character,
       },
-    })
+    });
     character.notFavourite = false;
   }
 
+  function handleDarkTheme() {
+    if (themeState.darkMode) themeDispatch({type: 'LIGHT_MODE'});
+    else themeDispatch({type: 'DARK_MODE'});
+  }
+
   const renderCharacters = ({item}) => (
-    <CharacterCard character={item} onClick={() => navigateToDetail(item)} onButtonClick={() => handleAddFavourites(item)}/>
+    <View>
+      <CharacterCard character={item} onClick={() => navigateToDetail(item)} />
+      <TouchableOpacity
+        style={styles.buttonContainer}
+        onPress={() => handleAddFavourites(item)}>
+        <Icon name="star" size={30} color={'#FFD700'} />
+        <Text style={styles.buttonText}> Add To Favourites</Text>
+      </TouchableOpacity>
+    </View>
   );
 
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
+      <Switch
+        trackColor={{false: '#767577', true: '#81b0ff'}}
+        thumbColor={themeState.darkMode ? '#f5dd4b' : '#f4f3f4'}
+        onValueChange={handleDarkTheme}
+        value={themeState.darkMode}
+      />
       <SearchBar onSearch={handleSearch}></SearchBar>
       {characterLoading && <Loading />}
       <FlatList
         data={characterList}
         renderItem={renderCharacters}
-        horizontal={true}></FlatList>
-    </View>
+        horizontal={true}
+        keyExtractor={item => item.id}
+        />
+    </SafeAreaView>
   );
 }
