@@ -3,7 +3,7 @@ import colors from '../../styles/colors';
 import fontSizes from '../../styles/fontSizes';
 import spacing from '../../styles/spacing';
 
-export default StyleSheet.create({
+const base_style = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -14,7 +14,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(22, 22, 250, 0.8)',
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
   },
@@ -24,3 +23,28 @@ export default StyleSheet.create({
     fontWeight: '800',
   },
 });
+
+export default {
+  light: StyleSheet.create({
+    ...base_style,
+    buttonContainer: {
+      ...base_style.buttonContainer,
+      backgroundColor: colors.lightThemeColorBlue,
+    },
+  }),
+
+  dark: StyleSheet.create({
+    ...base_style,
+    container: {
+      ...base_style.container,
+      backgroundColor: colors.darkThemeBackground,
+    },
+    buttonContainer: {
+      ...base_style.buttonContainer,
+      backgroundColor: colors.darkThemeColor2,
+      borderTopWidth: 0,
+      borderWidth: 1,
+      borderColor: 'white',
+    },
+  }),
+};

@@ -1,53 +1,55 @@
 import {useRoute} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   Text,
   SafeAreaView,
   Image,
   TouchableOpacity,
-  FlatList,
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ThemeContext } from '../../context/ThemeContext/ThemeProvider';
 import styles from './CharacterDetail.style';
 
 export default function CharacterDetail() {
   const route = useRoute();
+  
+  const {character} = route.params;
 
   const [comicsVisible, setComicsVisible] = useState(false);
 
-  const {character} = route.params;
+  const {themeState, themeDispatch} = useContext(ThemeContext);
 
   function handleComicsVisible() {
     setComicsVisible(!comicsVisible);
   }
 
   const renderComics = item => (
-    <View style={styles.comicsListView}>
-      <Text style={styles.comics}>• {item.name}</Text>
+    <View style={styles[themeState.darkMode].comicsListView}>
+      <Text style={styles[themeState.darkMode].comics}>• {item.name}</Text>
     </View>
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles[themeState.darkMode].container}>
       <ScrollView>
         <Image
           source={{
             uri: `${character.thumbnail.path}.${character.thumbnail.extension}`,
           }}
-          style={styles.image}
+          style={styles[themeState.darkMode].image}
         />
-        <View style={styles.characterNameView}>
-          <Text style={styles.characterName}>{character.name}</Text>
+        <View style={styles[themeState.darkMode].characterNameView}>
+          <Text style={styles[themeState.darkMode].characterName}>{character.name}</Text>
         </View>
-        <Text style={styles.description}>{character.description}</Text>
-        <View style={styles.comicsView}>
-          <Text style={styles.contents} numberOfLines={1}>
+        <Text style={styles[themeState.darkMode].description}>{character.description}</Text>
+        <View style={styles[themeState.darkMode].comicsView}>
+          <Text style={styles[themeState.darkMode].comicsNumber} numberOfLines={1}>
             Comics: {character.comics.available}{'  '}
           </Text>
           <TouchableOpacity onPress={handleComicsVisible}>
-            <Icon name="table-arrow-right" size={30} />
+            <Icon name="table-arrow-right" size={25} color={themeState.darkMode === 'light' ? 'gray' : 'white'} />
           </TouchableOpacity>
         </View>
         {comicsVisible &&

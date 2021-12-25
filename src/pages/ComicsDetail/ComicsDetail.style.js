@@ -3,38 +3,37 @@ import colors from '../../styles/colors';
 import fontSizes from '../../styles/fontSizes';
 import spacing from '../../styles/spacing';
 
-export default StyleSheet.create({
+const base_style = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
   },
   image: {
     width: '100%',
     height: Dimensions.get('window').height / 2.6,
-    marginTop:spacing.normal,
-    borderRadius:5,
-    resizeMode:'contain'
+    marginTop: spacing.normal,
+    borderRadius: 5,
+    resizeMode: 'contain',
   },
   comicsNameView: {
     alignItems: 'center',
     margin: spacing.normal,
   },
   contentView: {
-    alignItems:'center',
-    flexDirection:'row',
-    margin: spacing.normal,
+    alignItems: 'center',
+    flexDirection: 'row',
+    margin: spacing.big,
+    marginBottom: 0,
   },
   contentListView: {
     margin: spacing.large,
-    borderBottomWidth:1
+    borderBottomWidth: 1,
   },
-
   comicsName: {
     fontSize: fontSizes.bigTitle,
     fontWeight: 'bold',
   },
   contentTitle: {
-    fontSize: fontSizes.huge,
+    fontSize: fontSizes.title,
     fontStyle: 'italic',
   },
   description: {
@@ -47,3 +46,37 @@ export default StyleSheet.create({
     fontStyle: 'italic',
   },
 });
+
+export default {
+  light: StyleSheet.create({
+    ...base_style,
+  }),
+
+  dark: StyleSheet.create({
+    ...base_style,
+    container: {
+      ...base_style.container,
+      backgroundColor: colors.darkThemeBackground,
+    },
+    comicsName: {
+      ...base_style.comicsName,
+      color: colors.textColor,
+    },
+    contentTitle: {
+      ...base_style.contentTitle,
+      color: colors.textColor,
+    },
+    description: {
+      ...base_style.description,
+      color: colors.textColor,
+    },
+    contents: {
+      ...base_style.contents,
+      color: colors.textColor,
+    },
+    contentListView: {
+      ...base_style.contentListView,
+      borderColor: 'white',
+    },
+  }),
+};

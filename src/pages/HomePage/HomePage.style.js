@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
   textView: {
     padding: spacing.tiny,
-    backgroundColor: 'rgba(200, 22, 22, 0.7)',
+    backgroundColor: colors.lightThemeColorRed,
     alignItems: 'center',
   },
   text: {

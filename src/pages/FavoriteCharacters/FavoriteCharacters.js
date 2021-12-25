@@ -4,9 +4,14 @@ import CharacterCard from '../../components/cards/CharacterCard';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {FavouriteContext} from '../../context/FavouriteContext/FavouriteProvider';
 import styles from './FavoriteCharacters.style';
+import routes from '../../navigation/routes';
+import {ThemeContext} from '../../context/ThemeContext/ThemeProvider';
+import spacing from '../../styles/spacing';
 
 export default function FavouriteCharacters({navigation}) {
   const {state, dispatch} = useContext(FavouriteContext);
+
+  const {themeState} = useContext(ThemeContext);
 
   function handleRemoveFavourites(character) {
     dispatch({type: 'REMOVE_FROM_FAVOURITE_CHARACTERS', payload: {character}});
@@ -25,21 +30,32 @@ export default function FavouriteCharacters({navigation}) {
           onClick={() => navigateToDetail(item)}
         />
         <TouchableOpacity
-          style={styles.buttonContainer}
+          style={styles[themeState.darkMode].buttonContainer}
           onPress={() => handleRemoveFavourites(item)}>
           <Icon name="delete" size={30} color={'red'} />
-          <Text style={styles.buttonText}> Remove From Favourites</Text>
+          <Text style={styles[themeState.darkMode].buttonText}>
+            {' '}
+            Remove From Favourites
+          </Text>
         </TouchableOpacity>
       </View>
     );
   };
 
   return (
-    <View>
+    <View style={styles[themeState.darkMode].container}>
+      <View style={styles[themeState.darkMode].textView}>
+        <Icon name="star" size={40} color={'#FFD700'} />
+        <Text style={styles[themeState.darkMode].text}>
+          FAVOURİTE CHARACTERS
+        </Text>
+        <Icon name="star" size={40} color={'#FFD700'} />
+      </View>
       <FlatList
         data={state.favouriteCharacters}
         renderItem={renderFavouriteCharacters}
         horizontal={true}
+        style={styles[themeState.darkMode].list}
       />
     </View>
   );

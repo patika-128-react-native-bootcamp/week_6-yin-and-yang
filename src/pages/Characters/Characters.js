@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Switch,
   SafeAreaView,
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CharacterCard from '../../components/cards/CharacterCard';
@@ -57,7 +58,7 @@ export default function Characters({navigation}) {
   }
 
   function handleDarkTheme() {
-    if (themeState.darkMode) themeDispatch({type: 'LIGHT_MODE'});
+    if (themeState.darkMode === 'dark') themeDispatch({type: 'LIGHT_MODE'});
     else themeDispatch({type: 'DARK_MODE'});
   }
 
@@ -65,21 +66,23 @@ export default function Characters({navigation}) {
     <View>
       <CharacterCard character={item} onClick={() => navigateToDetail(item)} />
       <TouchableOpacity
-        style={styles.buttonContainer}
+        style={styles[themeState.darkMode].buttonContainer}
         onPress={() => handleAddFavourites(item)}>
         <Icon name="star" size={30} color={'#FFD700'} />
-        <Text style={styles.buttonText}> Add To Favourites</Text>
+        <Text style={styles[themeState.darkMode].buttonText}>
+          {''} Add To Favourites
+        </Text>
       </TouchableOpacity>
     </View>
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles[themeState.darkMode].container}>
       <Switch
         trackColor={{false: '#767577', true: '#81b0ff'}}
-        thumbColor={themeState.darkMode ? '#f5dd4b' : '#f4f3f4'}
+        thumbColor={themeState.darkMode === 'dark' ? '#f5dd4b' : '#f4f3f4'}
         onValueChange={handleDarkTheme}
-        value={themeState.darkMode}
+        value={themeState.darkMode === 'dark' ? true : false}
       />
       <SearchBar onSearch={handleSearch}></SearchBar>
       {characterLoading && <Loading />}
@@ -88,7 +91,7 @@ export default function Characters({navigation}) {
         renderItem={renderCharacters}
         horizontal={true}
         keyExtractor={item => item.id}
-        />
+      />
     </SafeAreaView>
   );
 }
