@@ -7,11 +7,13 @@ import {
   Switch,
   SafeAreaView,
   Alert,
+  StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CharacterCard from '../../components/cards/CharacterCard';
 import Loading from '../../components/Loading';
 import SearchBar from '../../components/SearchBar';
+import TopBar from '../../components/TopBar';
 import {FavouriteContext} from '../../context/FavouriteContext/FavouriteProvider';
 import {ThemeContext} from '../../context/ThemeContext/ThemeProvider';
 import useCharacters from '../../hooks/useCharacters/useCharacters';
@@ -37,6 +39,10 @@ export default function Characters({navigation}) {
   function navigateToDetail(characterInfo) {
     navigation.navigate(routes.CHARACTER_DETAIL, {character: characterInfo});
   }
+  
+  function navigateToHomePage() {
+    navigation.navigate(routes.HOME_PAGE);
+  }
 
   function handleSearch(text) {
     const filteredList = characterData.filter(character => {
@@ -57,11 +63,6 @@ export default function Characters({navigation}) {
     character.notFavourite = false;
   }
 
-  function handleDarkTheme() {
-    if (themeState.darkMode === 'dark') themeDispatch({type: 'LIGHT_MODE'});
-    else themeDispatch({type: 'DARK_MODE'});
-  }
-
   const renderCharacters = ({item}) => (
     <View>
       <CharacterCard character={item} onClick={() => navigateToDetail(item)} />
@@ -78,12 +79,7 @@ export default function Characters({navigation}) {
 
   return (
     <SafeAreaView style={styles[themeState.darkMode].container}>
-      <Switch
-        trackColor={{false: '#767577', true: '#81b0ff'}}
-        thumbColor={themeState.darkMode === 'dark' ? '#f5dd4b' : '#f4f3f4'}
-        onValueChange={handleDarkTheme}
-        value={themeState.darkMode === 'dark' ? true : false}
-      />
+      <TopBar onHomePress={navigateToHomePage} />
       <SearchBar onSearch={handleSearch}></SearchBar>
       {characterLoading && <Loading />}
       <FlatList

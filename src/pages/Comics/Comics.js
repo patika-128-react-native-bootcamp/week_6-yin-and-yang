@@ -1,5 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {View, Text, FlatList, Alert, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  Alert,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import ComicsCard from '../../components/cards/ComicsCard';
 import Loading from '../../components/Loading';
 import SearchBar from '../../components/SearchBar';
@@ -9,6 +16,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import routes from '../../navigation/routes';
 import styles from './Comics.style';
 import {FavouriteContext} from '../../context/FavouriteContext/FavouriteProvider';
+import TopBar from '../../components/TopBar';
 
 export default function Comics({navigation}) {
   const {comicsData, comicsLoading, comicsError} = useComics();
@@ -28,6 +36,10 @@ export default function Comics({navigation}) {
 
   function navigateToDetail(comicsInfo) {
     navigation.navigate(routes.COMICS_DETAIL, {comics: comicsInfo});
+  }
+
+  function navigateToHomePage() {
+    navigation.navigate(routes.HOME_PAGE);
   }
 
   function handleSearch(text) {
@@ -63,13 +75,14 @@ export default function Comics({navigation}) {
   );
 
   return (
-    <View style={styles[themeState.darkMode].container}>
+    <SafeAreaView style={styles[themeState.darkMode].container}>
+      <TopBar onHomePress={navigateToHomePage} />
       <SearchBar onSearch={handleSearch}></SearchBar>
       {comicsLoading && <Loading />}
       <FlatList
         data={comicsList}
         renderItem={renderComics}
         horizontal={true}></FlatList>
-    </View>
+    </SafeAreaView>
   );
 }
