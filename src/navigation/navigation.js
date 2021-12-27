@@ -13,79 +13,14 @@ import FavoriteCharacters from '../pages/FavoriteCharacters';
 import FavoriteComics from '../pages/FavoriteComics';
 import HomePage from '../pages/HomePage';
 import routes from './routes';
+import CharacterTab from './Tabs/CharacterTab';
+import ComicsTab from './Tabs/ComicsTab';
 
 export default function Navigation() {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
 
   const {themeState} = useContext(ThemeContext);
-
-  const ComicsTab = () => {
-    return (
-      <Tab.Navigator
-        screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor:
-            themeState.darkMode === 'light'
-              ? colors.lightThemeColorBlue
-              : 'white',
-          tabBarInactiveTintColor: 'gray',
-          tabBarStyle: {
-            backgroundColor:
-              themeState.darkMode === 'light'
-                ? 'white'
-                : colors.darkThemeColor1,
-          },
-        }}>
-        <Tab.Screen
-          name={routes.COMICS_PAGE}
-          component={Comics}
-          options={{
-            tabBarIcon: ({...rest}) => (
-              <Icon name="book-open-page-variant" {...rest} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name={routes.FAVORITE_COMICS_PAGE}
-          component={FavoriteComics}
-          options={{
-            tabBarIcon: ({...rest}) => <Icon name="star" {...rest} />,
-          }}
-        />
-      </Tab.Navigator>
-    );
-  };
-
-  const CharactersTab = () => {
-    return (
-      <Tab.Navigator
-        screenOptions={{
-          headerShown: false,
-          tabBarStyle: {
-            backgroundColor:
-              themeState.darkMode === 'light'
-                ? 'white'
-                : colors.darkThemeColor1,
-          },
-        }}>
-        <Tab.Screen
-          name={routes.CHARACTERS_PAGE}
-          component={Characters}
-          options={{
-            tabBarIcon: ({...rest}) => <Icon name="sword-cross" {...rest} />,
-          }}
-        />
-        <Tab.Screen
-          name={routes.FAVORITE_CHARACTERS_PAGE}
-          component={FavoriteCharacters}
-          options={{
-            tabBarIcon: ({...rest}) => <Icon name="star" {...rest} />,
-          }}
-        />
-      </Tab.Navigator>
-    );
-  };
 
   return (
     <NavigationContainer>
@@ -97,7 +32,7 @@ export default function Navigation() {
         />
         <Stack.Screen
           name={routes.CHARACTERS_STACK}
-          component={CharactersTab}
+          component={CharacterTab}
           options={{headerShown: false}}
         />
         <Stack.Screen
@@ -142,10 +77,18 @@ export default function Navigation() {
           options={({navigation}) => ({
             title: 'Details',
             headerTitleAlign: 'center',
+            headerTintColor: themeState.darkMode === 'light' ? 'gray' : 'white',
+            headerStyle: {
+              backgroundColor:
+                themeState.darkMode === 'light'
+                  ? 'white'
+                  : colors.darkThemeColor1,
+            },
             headerRight: () => (
               <Icon
                 name="home"
                 size={30}
+                color={themeState.darkMode === 'light' ? 'gray' : 'white'}
                 onPress={() => navigation.navigate(routes.HOME_PAGE)}
               />
             ),
@@ -153,6 +96,7 @@ export default function Navigation() {
               <Icon
                 name="arrow-left"
                 size={30}
+                color={themeState.darkMode === 'light' ? 'gray' : 'white'}
                 onPress={() => navigation.goBack()}
               />
             ),
