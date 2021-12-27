@@ -10,7 +10,6 @@ import {ThemeContext} from '../../../context/ThemeContext/ThemeProvider';
 import styles from './CharacterCard.style';
 
 export default function CharacterCard({character, onClick}) {
-  
   const {themeState} = useContext(ThemeContext);
 
   return (
