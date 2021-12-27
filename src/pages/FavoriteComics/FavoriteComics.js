@@ -36,7 +36,7 @@ export default function FavoriteComics({navigation}) {
       </View>
     );
   };
-
+console.log(state.favouriteComics)
   return (
     <View style={styles[themeState.darkMode].container}>
       <View style={styles[themeState.darkMode].textView}>

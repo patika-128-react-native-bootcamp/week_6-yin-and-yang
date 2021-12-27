@@ -24,13 +24,13 @@ export default (state, action) => {
         JSON.stringify(updatedFavourites),
       );
 
-      console.log(
-        AsyncStorage.getItem('@FavouriteCharactersList').then(
-          FavouriteCharactersList => {
-            JSON.parse(FavouriteCharactersList);
-          },
-        ),
-      );
+      // console.log(
+      //   AsyncStorage.getItem('@FavouriteCharactersList').then(
+      //     FavouriteCharactersList => {
+      //       JSON.parse(FavouriteCharactersList);
+      //     },
+      //   ),
+      // );
 
       return {...state, favouriteCharacters: updatedFavourites};
     }
@@ -91,6 +91,18 @@ export default (state, action) => {
       );
 
       return {...state, favouriteComics: updatedFavouritesList};
+    }
+
+    case 'SET_INITIAL_FAVOURITE_CHARACTER': {
+      const favCharacter = action.payload;
+
+      return {...state, favouriteCharacters: favCharacter};
+    }
+
+    case 'SET_INITIAL_FAVOURITE_COMICS': {
+      const favComics = action.payload;
+
+      return {...state, favouriteComics: favComics};
     }
 
     default:
