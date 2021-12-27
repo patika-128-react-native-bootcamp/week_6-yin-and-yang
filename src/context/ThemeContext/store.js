@@ -1,3 +1,3 @@
 export default {
-    darkMode: "light", 
+    darkMode: "", 
   };

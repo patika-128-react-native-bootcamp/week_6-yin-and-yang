@@ -21,8 +21,8 @@ export default function TopBar({onHomePress}) {
         onPress={onHomePress}
       />
       <Switch
-        trackColor={{false: '#767577', true: '#81b0ff'}}
-        thumbColor={themeState.darkMode === 'dark' ? '#f5dd4b' : '#f4f3f4'}
+        trackColor={{false: '#767577', true: 'white'}}
+        thumbColor={themeState.darkMode === 'dark' ? 'gray' : '#f4f3f4'}
         onValueChange={handleDarkTheme}
         value={themeState.darkMode === 'dark' ? true : false}
       />

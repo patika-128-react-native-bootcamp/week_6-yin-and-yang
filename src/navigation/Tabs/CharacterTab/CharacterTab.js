@@ -16,6 +16,11 @@ export default function CharacterTab() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarActiveTintColor:
+          themeState.darkMode === 'light'
+            ? colors.lightThemeColorBlue
+            : 'white',
+        tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
           backgroundColor:
             themeState.darkMode === 'light' ? 'white' : colors.darkThemeColor1,
