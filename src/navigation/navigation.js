@@ -15,6 +15,7 @@ import HomePage from '../pages/HomePage';
 import routes from './routes';
 import CharacterTab from './Tabs/CharacterTab';
 import ComicsTab from './Tabs/ComicsTab';
+import I18n from '../lang/_i18n';
 
 export default function Navigation() {
   const Stack = createNativeStackNavigator();

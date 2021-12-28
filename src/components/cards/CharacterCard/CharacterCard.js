@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   View,
   Text,
@@ -11,6 +12,8 @@ import styles from './CharacterCard.style';
 
 export default function CharacterCard({character, onClick}) {
   const {themeState} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
 
   return (
     <TouchableWithoutFeedback onPress={onClick}>

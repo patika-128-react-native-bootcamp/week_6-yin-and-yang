@@ -1,15 +1,17 @@
-import React, {useContext} from 'react';
-import {Switch, View} from 'react-native';
+import React, {useContext, useState} from 'react';
+import {Switch, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ThemeContext} from '../../context/ThemeContext/ThemeProvider';
+import i18n from '../../lang/_i18n';
+import SettingsModal from '../SettingsModal';
 import styles from './TopBar.style';
 
 export default function TopBar({onHomePress}) {
   const {themeState, themeDispatch} = useContext(ThemeContext);
+  const [settingsModalVisible, setSettingsModalVisible] = useState(false);
 
-  function handleDarkTheme() {
-    if (themeState.darkMode === 'dark') themeDispatch({type: 'LIGHT_MODE'});
-    else themeDispatch({type: 'DARK_MODE'});
+  function handleSettingsModalVisible() {
+    setSettingsModalVisible(!settingsModalVisible);
   }
 
   return (
@@ -20,11 +22,15 @@ export default function TopBar({onHomePress}) {
         color={themeState.darkMode === 'light' ? 'gray' : 'white'}
         onPress={onHomePress}
       />
-      <Switch
-        trackColor={{false: '#767577', true: 'white'}}
-        thumbColor={themeState.darkMode === 'dark' ? 'gray' : '#f4f3f4'}
-        onValueChange={handleDarkTheme}
-        value={themeState.darkMode === 'dark' ? true : false}
+      <Icon
+        name="cog-outline"
+        size={30}
+        color={themeState.darkMode === 'light' ? 'gray' : 'white'}
+        onPress={handleSettingsModalVisible}
+      />
+      <SettingsModal
+        settingsModalVisible={settingsModalVisible}
+        handleSettingsModalVisible={handleSettingsModalVisible}
       />
     </View>
   );
