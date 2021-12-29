@@ -1,8 +1,7 @@
 import React, {useContext, useState} from 'react';
-import {Switch, Text, View} from 'react-native';
+import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ThemeContext} from '../../context/ThemeContext/ThemeProvider';
-import i18n from '../../lang/_i18n';
 import SettingsModal from '../SettingsModal';
 import styles from './TopBar.style';
 

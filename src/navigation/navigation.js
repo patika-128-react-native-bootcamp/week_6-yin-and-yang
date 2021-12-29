@@ -16,12 +16,14 @@ import routes from './routes';
 import CharacterTab from './Tabs/CharacterTab';
 import ComicsTab from './Tabs/ComicsTab';
 import I18n from '../lang/_i18n';
+import {useTranslation} from 'react-i18next';
 
 export default function Navigation() {
   const Stack = createNativeStackNavigator();
-  const Tab = createBottomTabNavigator();
 
   const {themeState} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
 
   return (
     <NavigationContainer>
@@ -40,7 +42,7 @@ export default function Navigation() {
           name={routes.CHARACTER_DETAIL}
           component={CharacterDetail}
           options={({navigation}) => ({
-            title: 'Details',
+            title: t('Details'),
             headerTitleAlign: 'center',
             headerStyle: {
               backgroundColor:
@@ -76,7 +78,7 @@ export default function Navigation() {
           name={routes.COMICS_DETAIL}
           component={ComicsDetail}
           options={({navigation}) => ({
-            title: 'Details',
+            title: t('Details'),
             headerTitleAlign: 'center',
             headerTintColor: themeState.darkMode === 'light' ? 'gray' : 'white',
             headerStyle: {

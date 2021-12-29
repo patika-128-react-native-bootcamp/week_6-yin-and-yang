@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import {View, Text, TouchableWithoutFeedback, Image} from 'react-native';
-import { ThemeContext } from '../../../context/ThemeContext/ThemeProvider';
+import {ThemeContext} from '../../../context/ThemeContext/ThemeProvider';
 import styles from './ComicsCard.style';
 
 export default function ComicsCard({comics, onClick}) {
-
   const {themeState} = useContext(ThemeContext);
 
   return (
@@ -16,7 +15,9 @@ export default function ComicsCard({comics, onClick}) {
           }}
           style={styles[themeState.darkMode].image}
         />
-        <Text style={styles[themeState.darkMode].comicsName}>{comics.title}</Text>
+        <Text style={styles[themeState.darkMode].comicsName}>
+          {comics.title}
+        </Text>
       </View>
     </TouchableWithoutFeedback>
   );

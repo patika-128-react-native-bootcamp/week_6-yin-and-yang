@@ -1,5 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React, {useContext} from 'react';
+import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ThemeContext} from '../../../context/ThemeContext/ThemeProvider';
 import Comics from '../../../pages/Comics';
@@ -11,6 +12,8 @@ export default function ComicsTab() {
   const Tab = createBottomTabNavigator();
 
   const {themeState} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
 
   return (
     <Tab.Navigator
@@ -30,6 +33,7 @@ export default function ComicsTab() {
         name={routes.COMICS_PAGE}
         component={Comics}
         options={{
+          title: t('comics'),
           tabBarIcon: ({...rest}) => (
             <Icon name="book-open-page-variant" {...rest} />
           ),
@@ -39,6 +43,7 @@ export default function ComicsTab() {
         name={routes.FAVORITE_COMICS_PAGE}
         component={FavoriteComics}
         options={{
+          title: t('Favourite Comics'),
           tabBarIcon: ({...rest}) => <Icon name="star" {...rest} />,
         }}
       />

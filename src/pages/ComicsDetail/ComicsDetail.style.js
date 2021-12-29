@@ -1,6 +1,7 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import colors from '../../styles/colors';
 import fontSizes from '../../styles/fontSizes';
+import radius from '../../styles/radius';
 import spacing from '../../styles/spacing';
 
 const base_style = StyleSheet.create({
@@ -11,7 +12,7 @@ const base_style = StyleSheet.create({
     width: '100%',
     height: Dimensions.get('window').height / 2.6,
     marginTop: spacing.normal,
-    borderRadius: 5,
+    borderRadius: radius.small,
     resizeMode: 'contain',
   },
   comicsNameView: {

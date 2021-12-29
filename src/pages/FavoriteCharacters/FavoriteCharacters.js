@@ -7,11 +7,14 @@ import styles from './FavoriteCharacters.style';
 import routes from '../../navigation/routes';
 import {ThemeContext} from '../../context/ThemeContext/ThemeProvider';
 import spacing from '../../styles/spacing';
+import {useTranslation} from 'react-i18next';
 
 export default function FavouriteCharacters({navigation}) {
   const {state, dispatch} = useContext(FavouriteContext);
 
   const {themeState} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
 
   function handleRemoveFavourites(character) {
     dispatch({type: 'REMOVE_FROM_FAVOURITE_CHARACTERS', payload: {character}});
@@ -35,7 +38,7 @@ export default function FavouriteCharacters({navigation}) {
           <Icon name="delete" size={30} color={'red'} />
           <Text style={styles[themeState.darkMode].buttonText}>
             {' '}
-            Remove From Favourites
+            {t('Remove From Favourites')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -47,7 +50,7 @@ export default function FavouriteCharacters({navigation}) {
       <View style={styles[themeState.darkMode].textView}>
         <Icon name="star" size={40} color={'#FFD700'} />
         <Text style={styles[themeState.darkMode].text}>
-          FAVOURİTE CHARACTERS
+          {t('Favourite Characters').toUpperCase()}
         </Text>
         <Icon name="star" size={40} color={'#FFD700'} />
       </View>

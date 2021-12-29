@@ -36,7 +36,7 @@ export default function CharacterCard({character, onClick}) {
           {character.name}
         </Text>
         <Text style={styles[themeState.darkMode].comics} numberOfLines={1}>
-          Comics: {character.comics.available}
+          {t('comics')}: {character.comics.available}
         </Text>
 
         <Text style={styles[themeState.darkMode].description} numberOfLines={3}>

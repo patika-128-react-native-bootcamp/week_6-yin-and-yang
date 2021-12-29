@@ -1,6 +1,7 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import colors from '../../styles/colors';
 import fontSizes from '../../styles/fontSizes';
+import radius from '../../styles/radius';
 import spacing from '../../styles/spacing';
 
 const base_style = StyleSheet.create({
@@ -16,8 +17,8 @@ const base_style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.lightThemeColorBlue,
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: radius.normal,
+    borderBottomLeftRadius: radius.normal,
   },
   buttonText: {
     fontSize: fontSizes.big,
@@ -37,9 +38,9 @@ const base_style = StyleSheet.create({
     borderTopWidth: 3,
   },
   text: {
-    fontSize: fontSizes.title,
+    fontSize: fontSizes.huge,
     fontWeight: 'bold',
-    padding:spacing.small,
+    padding: spacing.small,
   },
 });
 

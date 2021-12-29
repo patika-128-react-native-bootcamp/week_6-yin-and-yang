@@ -1,13 +1,12 @@
 import React, {useEffect, useState, useContext} from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   View,
   Text,
   FlatList,
   TouchableOpacity,
-  Switch,
   SafeAreaView,
   Alert,
-  StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CharacterCard from '../../components/cards/CharacterCard';
@@ -28,6 +27,8 @@ export default function Characters({navigation}) {
 
   const {themeState, themeDispatch} = useContext(ThemeContext);
 
+  const {t} = useTranslation();
+
   useEffect(() => {
     setCharacterList(characterData);
   }, [characterData]);
@@ -39,7 +40,7 @@ export default function Characters({navigation}) {
   function navigateToDetail(characterInfo) {
     navigation.navigate(routes.CHARACTER_DETAIL, {character: characterInfo});
   }
-  
+
   function navigateToHomePage() {
     navigation.navigate(routes.HOME_PAGE);
   }
@@ -71,7 +72,7 @@ export default function Characters({navigation}) {
         onPress={() => handleAddFavourites(item)}>
         <Icon name="star" size={30} color={'#FFD700'} />
         <Text style={styles[themeState.darkMode].buttonText}>
-          {''} Add To Favourites
+          {''} {t('Add To Favourites')}
         </Text>
       </TouchableOpacity>
     </View>

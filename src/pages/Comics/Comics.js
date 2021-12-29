@@ -17,6 +17,7 @@ import routes from '../../navigation/routes';
 import styles from './Comics.style';
 import {FavouriteContext} from '../../context/FavouriteContext/FavouriteProvider';
 import TopBar from '../../components/TopBar';
+import {useTranslation} from 'react-i18next';
 
 export default function Comics({navigation}) {
   const {comicsData, comicsLoading, comicsError} = useComics();
@@ -25,6 +26,8 @@ export default function Comics({navigation}) {
   const {dispatch} = useContext(FavouriteContext);
 
   const {themeState, themeDispatch} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
 
   useEffect(() => {
     setComicsList(comicsData);
@@ -68,7 +71,7 @@ export default function Comics({navigation}) {
         onPress={() => handleAddFavourites(item)}>
         <Icon name="star" size={30} color={'#FFD700'} />
         <Text style={styles[themeState.darkMode].buttonText}>
-          {''} Add To Favourites
+          {''} {t('Add To Favourites')}
         </Text>
       </TouchableOpacity>
     </View>

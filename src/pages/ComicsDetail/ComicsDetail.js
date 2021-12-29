@@ -1,7 +1,7 @@
 import {useRoute} from '@react-navigation/native';
 import React, {useContext} from 'react';
+import {useTranslation} from 'react-i18next';
 import {View, Text, SafeAreaView, Image, ScrollView} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ThemeContext} from '../../context/ThemeContext/ThemeProvider';
 import styles from './ComicsDetail.style';
 
@@ -11,6 +11,8 @@ export default function ComicsDetail() {
   const {comics} = route.params;
 
   const {themeState, themeDispatch} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
 
   const renderCreators = item => (
     <View style={styles[themeState.darkMode].contentListView}>
@@ -47,7 +49,7 @@ export default function ComicsDetail() {
           <Text
             style={styles[themeState.darkMode].contentTitle}
             numberOfLines={1}>
-            Creators: {comics.creators.available}
+            {t('Creators')}: {comics.creators.available}
           </Text>
         </View>
         {comics.creators.items.map(item => renderCreators(item))}
@@ -55,7 +57,7 @@ export default function ComicsDetail() {
           <Text
             style={styles[themeState.darkMode].contentTitle}
             numberOfLines={1}>
-            Characters: {comics.characters.available}
+            {t('characters')}: {comics.characters.available}
           </Text>
         </View>
         {comics.characters.items.map(item => renderCharacters(item))}

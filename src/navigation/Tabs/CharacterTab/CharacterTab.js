@@ -1,5 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React, {useContext} from 'react';
+import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ThemeContext} from '../../../context/ThemeContext/ThemeProvider';
 import Characters from '../../../pages/Characters';
@@ -11,6 +12,8 @@ export default function CharacterTab() {
   const Tab = createBottomTabNavigator();
 
   const {themeState} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
 
   return (
     <Tab.Navigator
@@ -30,6 +33,7 @@ export default function CharacterTab() {
         name={routes.CHARACTERS_PAGE}
         component={Characters}
         options={{
+          title: t('characters'),
           tabBarIcon: ({...rest}) => <Icon name="sword-cross" {...rest} />,
         }}
       />
@@ -37,6 +41,7 @@ export default function CharacterTab() {
         name={routes.FAVORITE_CHARACTERS_PAGE}
         component={FavoriteCharacters}
         options={{
+          title: t('Favourite Characters'),
           tabBarIcon: ({...rest}) => <Icon name="star" {...rest} />,
         }}
       />

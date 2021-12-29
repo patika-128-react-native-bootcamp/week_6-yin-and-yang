@@ -6,11 +6,14 @@ import {FavouriteContext} from '../../context/FavouriteContext/FavouriteProvider
 import styles from './FavoriteComics.style';
 import routes from '../../navigation/routes';
 import {ThemeContext} from '../../context/ThemeContext/ThemeProvider';
+import {useTranslation} from 'react-i18next';
 
 export default function FavoriteComics({navigation}) {
   const {state, dispatch} = useContext(FavouriteContext);
 
   const {themeState} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
 
   function handleRemoveFavourites(comics) {
     dispatch({type: 'REMOVE_FROM_FAVOURITE_COMICS', payload: {comics}});
@@ -30,18 +33,20 @@ export default function FavoriteComics({navigation}) {
           <Icon name="delete" size={30} color={'red'} />
           <Text style={styles[themeState.darkMode].buttonText}>
             {' '}
-            Remove From Favourites
+            {t('Remove From Favourites')}
           </Text>
         </TouchableOpacity>
       </View>
     );
   };
-console.log(state.favouriteComics)
+
   return (
     <View style={styles[themeState.darkMode].container}>
       <View style={styles[themeState.darkMode].textView}>
         <Icon name="star" size={50} color={'#FFD700'} />
-        <Text style={styles[themeState.darkMode].text}>FAVOURİTE COMICS</Text>
+        <Text style={styles[themeState.darkMode].text}>
+          {t('Favourite Comics').toUpperCase()}
+        </Text>
         <Icon name="star" size={50} color={'#FFD700'} />
       </View>
       <FlatList

@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../styles/colors';
+import radius from '../../styles/radius';
 import spacing from '../../styles/spacing';
 
 const base_style = StyleSheet.create({
@@ -12,7 +13,7 @@ const base_style = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: spacing.tiny,
     marginHorizontal: spacing.small,
-    borderRadius: 10,
+    borderRadius: radius.normal,
     marginVertical: spacing.large,
     height: 45,
   },

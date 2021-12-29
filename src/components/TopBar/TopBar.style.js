@@ -10,7 +10,7 @@ const base_style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: spacing.big,
-    marginBottom:spacing.normal,
+    marginBottom: spacing.normal,
   },
 });
 

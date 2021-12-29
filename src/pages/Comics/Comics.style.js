@@ -1,6 +1,7 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import colors from '../../styles/colors';
 import fontSizes from '../../styles/fontSizes';
+import radius from '../../styles/radius';
 import spacing from '../../styles/spacing';
 
 const base_style = StyleSheet.create({
@@ -14,8 +15,8 @@ const base_style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: radius.normal,
+    borderBottomLeftRadius: radius.normal,
   },
   buttonText: {
     fontSize: fontSizes.big,

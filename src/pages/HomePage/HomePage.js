@@ -1,14 +1,13 @@
-import React, { Suspense } from 'react';
+import React, {Suspense} from 'react';
 import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import routes from '../../navigation/routes';
 import MarvelCharacters from '../../assets/MarvelCharacters.jpg';
 import MarvelComics from '../../assets/MarvelComics.jpg';
 import styles from './HomePage.style';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 export default function HomePage({navigation}) {
-
   const {t} = useTranslation();
 
   function navigateToCharacters() {
@@ -33,7 +32,7 @@ export default function HomePage({navigation}) {
       <TouchableOpacity onPress={navigateToComics}>
         <ImageBackground source={MarvelComics} style={styles.imageBackground}>
           <View style={styles.textView}>
-            <Text style={styles.text}>COMICS</Text>
+            <Text style={styles.text}>{t('comics').toUpperCase()}</Text>
           </View>
         </ImageBackground>
       </TouchableOpacity>

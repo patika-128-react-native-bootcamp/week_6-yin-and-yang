@@ -2,6 +2,7 @@ import {Dimensions, StyleSheet} from 'react-native';
 import colors from '../../../styles/colors';
 import fontSizes from '../../../styles/fontSizes';
 import spacing from '../../../styles/spacing';
+import radius from '../../../styles/radius';
 
 const base_style = StyleSheet.create({
   container: {
@@ -11,8 +12,8 @@ const base_style = StyleSheet.create({
     marginBottom: 0,
     padding: spacing.large,
     alignItems: 'center',
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
+    borderTopRightRadius: radius.normal,
+    borderTopLeftRadius: radius.normal,
   },
   image: {
     width: '100%',
@@ -52,8 +53,8 @@ export default {
     container: {
       ...base_style.container,
       backgroundColor: colors.darkThemeColor1,
-      borderWidth:1,
-      borderColor:'white',
+      borderWidth: 1,
+      borderColor: 'white',
     },
   }),
 };

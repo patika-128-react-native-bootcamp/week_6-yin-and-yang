@@ -2,6 +2,7 @@ import {Dimensions, StyleSheet} from 'react-native';
 import colors from '../../../styles/colors';
 import fontSizes from '../../../styles/fontSizes';
 import spacing from '../../../styles/spacing';
+import radius from '../../../styles/radius';
 
 const base_style = StyleSheet.create({
   container: {
@@ -11,14 +12,14 @@ const base_style = StyleSheet.create({
     marginBottom: 0,
     padding: spacing.large,
     alignItems: 'center',
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
+    borderTopRightRadius: radius.normal,
+    borderTopLeftRadius: radius.normal,
   },
   image: {
     width: '100%',
     height: Dimensions.get('window').height / 2.6,
     resizeMode: 'cover',
-    borderRadius: 24,
+    borderRadius: radius.big,
     margin: 0,
     marginBottom: spacing.normal,
   },

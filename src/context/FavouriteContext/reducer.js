@@ -24,14 +24,6 @@ export default (state, action) => {
         JSON.stringify(updatedFavourites),
       );
 
-      // console.log(
-      //   AsyncStorage.getItem('@FavouriteCharactersList').then(
-      //     FavouriteCharactersList => {
-      //       JSON.parse(FavouriteCharactersList);
-      //     },
-      //   ),
-      // );
-
       return {...state, favouriteCharacters: updatedFavourites};
     }
 
