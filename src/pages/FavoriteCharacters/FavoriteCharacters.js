@@ -6,7 +6,6 @@ import {FavouriteContext} from '../../context/FavouriteContext/FavouriteProvider
 import styles from './FavoriteCharacters.style';
 import routes from '../../navigation/routes';
 import {ThemeContext} from '../../context/ThemeContext/ThemeProvider';
-import spacing from '../../styles/spacing';
 import {useTranslation} from 'react-i18next';
 
 export default function FavouriteCharacters({navigation}) {

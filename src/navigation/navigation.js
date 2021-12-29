@@ -1,4 +1,3 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useContext} from 'react';
@@ -6,16 +5,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../styles/colors';
 import {ThemeContext} from '../context/ThemeContext/ThemeProvider';
 import CharacterDetail from '../pages/CharacterDetail';
-import Characters from '../pages/Characters';
-import Comics from '../pages/Comics';
 import ComicsDetail from '../pages/ComicsDetail';
-import FavoriteCharacters from '../pages/FavoriteCharacters';
-import FavoriteComics from '../pages/FavoriteComics';
 import HomePage from '../pages/HomePage';
 import routes from './routes';
 import CharacterTab from './Tabs/CharacterTab';
 import ComicsTab from './Tabs/ComicsTab';
-import I18n from '../lang/_i18n';
 import {useTranslation} from 'react-i18next';
 
 export default function Navigation() {

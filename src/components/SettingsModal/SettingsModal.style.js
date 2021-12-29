@@ -15,7 +15,8 @@ const base_style = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   dropdownPicker: {
-    width: Dimensions.get('window').width / 2.7,
+    width: Dimensions.get('window').width / 2.8,
+    height: 35,
     marginTop: spacing.small,
   },
   text: {

@@ -6,7 +6,7 @@ import {ThemeContext} from '../../context/ThemeContext/ThemeProvider';
 import styles from './SearchBar.style';
 
 export default function SearchBar({onSearch}) {
-  const {themeState, themeDispatch} = useContext(ThemeContext);
+  const {themeState} = useContext(ThemeContext);
 
   const {t} = useTranslation();
 

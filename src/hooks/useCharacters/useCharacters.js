@@ -13,7 +13,11 @@ export default function useCharacters() {
     try {
       setCharacterLoading(true);
       const response = await axios.get(URL);
-      setCharacterData(response.data.data.results.filter(character => (character.notFavourite = true)));
+      setCharacterData(
+        response.data.data.results.filter(
+          character => (character.notFavourite = true),
+        ),
+      );
     } catch (error) {
       setCharacterError(error);
     } finally {
